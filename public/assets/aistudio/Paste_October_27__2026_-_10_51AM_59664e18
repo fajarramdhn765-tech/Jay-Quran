@@ -1,0 +1,1003 @@
+MASTER PROMPT UTAMA — JAY'Z QURAN
+
+Aplikasi Al-Qur'an Digital, Jadwal Salat, Adzan, Kalender Hijriah, dan Android App
+
+1. PERAN DAN TUJUAN PROYEK
+
+Bertindaklah sebagai Senior Full-Stack Developer, UI/UX Designer, Software Architect, dan Mobile App Developer yang berpengalaman membangun aplikasi Islami modern.
+
+Bangun aplikasi bernama Jay'z Quran, sebuah aplikasi Al-Qur'an digital yang lengkap, premium, ringan, responsif, mudah digunakan, dan siap dikembangkan menjadi Progressive Web App (PWA) serta aplikasi Android yang dapat diinstal dan diunduh.
+
+Aplikasi bukan sekadar mockup, desain statis, atau demonstrasi antarmuka. Implementasikan fungsi yang benar-benar bekerja, integrasikan API yang sesuai, tangani kondisi error, dan uji fitur utama.
+
+Prioritas utama:
+
+1. Akurasi teks Al-Qur'an dan terjemahan.
+2. Akurasi jadwal salat berdasarkan tanggal dan lokasi.
+3. Pengingat adzan dengan penjelasan keterbatasan platform.
+4. Desain premium, bersih, dan mudah digunakan.
+5. Penyimpanan data yang aman dan konsisten.
+6. Responsivitas pada perangkat seluler, tablet, dan desktop.
+7. Kemampuan instalasi dan proses build aplikasi yang dapat diverifikasi.
+
+Jangan menghapus fitur yang sudah ada ketika menambahkan fitur baru. Jika proyek sudah berisi kode, periksa struktur proyek terlebih dahulu, pertahankan fitur yang masih berfungsi, dan lakukan perubahan secara terintegrasi.
+
+---
+
+2. IDENTITAS DAN BRANDING APLIKASI
+
+Nama aplikasi: Jay'z Quran
+
+Tagline: “Temukan Kedamaian dalam Tilawah”
+
+Bahasa utama: Bahasa Indonesia.
+
+Target pengguna: masyarakat Muslim yang membutuhkan Al-Qur'an digital, jadwal salat, pengingat adzan, dan fitur ibadah harian.
+
+Buat identitas visual yang konsisten, elegan, tenang, modern, dan bernuansa Islami tanpa ornamen berlebihan.
+
+Palet warna resmi
+
+Gunakan design tokens berikut secara konsisten di seluruh halaman:
+
+- Primary Emerald: "#064B32"
+- Emerald Light: "#08784F"
+- Forest Dark: "#09251B"
+- Royal Gold: "#E9B949"
+- Warm Ivory: "#FFF4D6"
+- App Background: "#FFFDF5"
+- Surface: "#FFFFFF"
+- Surface Muted: "#F5F7F2"
+- Text Primary: "#09251B"
+- Text Secondary: "#52665B"
+- Border: "#DCE5DD"
+
+Aturan desain:
+
+- Gunakan Emerald sebagai warna utama.
+- Gunakan Gold sebagai aksen untuk penanda penting.
+- Gunakan Ivory dan putih untuk permukaan yang nyaman dibaca.
+- Hindari gradasi yang tidak diperlukan, warna neon, bayangan berlebihan, dan efek visual yang mengganggu.
+- Gunakan tipografi modern yang mudah dibaca.
+- Gunakan font Arab yang mendukung harakat dan tanda baca Al-Qur'an dengan baik.
+- Pastikan teks Arab tidak terpotong, tidak bertumpuk, dan tidak kehilangan harakat.
+- Sediakan ikon konsisten dengan gaya minimalis.
+- Gunakan animasi ringan hanya jika bermanfaat.
+- Hormati preferensi reduced motion pada perangkat.
+
+Buat satu konfigurasi terpusat, misalnya "APP_CONFIG", untuk nama aplikasi, tagline, warna, metadata, pengaturan API, dan konfigurasi umum.
+
+Buat design tokens terpusat agar warna, jarak, ukuran teks, radius, dan komponen mudah dipelihara.
+
+---
+
+3. ARSITEKTUR DAN TEKNOLOGI
+
+Gunakan teknologi yang kompatibel dengan lingkungan Google AI Studio Build dan proyek yang tersedia.
+
+Jika proyek menggunakan React, pertahankan React dan gunakan TypeScript bila memungkinkan.
+
+Gunakan:
+
+- React dan TypeScript jika didukung proyek.
+- Komponen UI yang reusable.
+- CSS responsif atau sistem styling yang sesuai dengan proyek.
+- Modul layanan terpisah untuk API Al-Qur'an dan jadwal salat.
+- Penyimpanan lokal untuk preferensi, bookmark, catatan, dan progres membaca.
+- Service worker dan web app manifest untuk PWA.
+- Capacitor atau pendekatan native wrapper yang sesuai untuk pengembangan Android apabila diperlukan.
+
+Jangan mengganti keseluruhan stack tanpa alasan teknis yang kuat.
+
+Pisahkan kode menjadi modul yang jelas, misalnya:
+
+- "components/"
+- "pages/"
+- "services/quranService"
+- "services/prayerTimesService"
+- "services/audioService"
+- "services/notificationService"
+- "hooks/"
+- "utils/"
+- "storage/"
+- "config/"
+
+Nama dan struktur direktori dapat menyesuaikan proyek yang tersedia.
+
+Hindari:
+
+- Satu file besar yang berisi seluruh logika aplikasi.
+- Data palsu yang digunakan seolah-olah data nyata.
+- Tombol yang tidak memiliki fungsi.
+- Link yang rusak.
+- API yang tidak terdokumentasi.
+- Hardcoded jadwal salat yang tidak diperbarui.
+- Error yang disembunyikan tanpa penjelasan.
+- Klaim bahwa build atau fitur telah berhasil tanpa pengujian.
+
+---
+
+4. HALAMAN BERANDA
+
+Buat beranda yang menjadi pusat navigasi Jay'z Quran.
+
+Tampilkan:
+
+1. Logo dan nama Jay'z Quran.
+2. Sapaan yang sederhana.
+3. Hari dan tanggal Masehi.
+4. Tanggal Hijriah jika tersedia dari sumber kalender.
+5. Jam digital real-time.
+6. Nama kota dan zona waktu.
+7. Kartu waktu salat berikutnya.
+8. Hitung mundur menuju salat berikutnya.
+9. Tombol untuk membuka jadwal salat lengkap.
+10. Tombol lanjutkan membaca Al-Qur'an.
+11. Surah terakhir dibaca.
+12. Progres membaca.
+13. Akses cepat menuju daftar surah.
+14. Akses bookmark dan ayat favorit.
+15. Akses pencarian ayat.
+16. Akses audio murottal.
+17. Ringkasan pengingat ibadah jika relevan.
+
+Jika pengguna belum pernah membaca, tampilkan ajakan untuk memulai membaca Al-Qur'an.
+
+Jangan menampilkan progres palsu. Perbarui progres berdasarkan interaksi nyata pengguna.
+
+Tampilan beranda harus ringan, rapi, dan tidak dipenuhi kartu yang tidak penting.
+
+---
+
+5. FITUR AL-QUR'AN DIGITAL
+
+5.1 Daftar 114 surah
+
+Tampilkan seluruh 114 surah Al-Qur'an berdasarkan urutan yang benar.
+
+Setiap item memuat:
+
+- Nomor surah.
+- Nama surah dalam bahasa Arab.
+- Nama latin.
+- Arti nama surah jika tersedia.
+- Jumlah ayat.
+- Kategori Makkiyah atau Madaniyah jika tersedia.
+- Akses untuk membuka pembaca surah.
+
+Sediakan pencarian surah berdasarkan nama Arab, nama latin, atau nomor surah.
+
+Pastikan daftar dapat dimuat dengan baik pada layar kecil dan tidak mengalami lag.
+
+5.2 Pembaca Al-Qur'an
+
+Buat halaman pembaca surah yang nyaman untuk tilawah.
+
+Tampilkan:
+
+- Nama surah.
+- Nomor surah.
+- Jumlah ayat.
+- Teks Arab lengkap beserta harakat.
+- Nomor setiap ayat.
+- Terjemahan Bahasa Indonesia.
+- Transliterasi jika tersedia.
+- Tafsir ayat jika tersedia.
+- Kontrol audio.
+- Bookmark ayat.
+- Salin teks ayat jika memungkinkan.
+- Bagikan ayat jika didukung perangkat.
+- Navigasi surah sebelumnya dan berikutnya.
+
+Ketentuan teks Arab:
+
+- Gunakan teks dari sumber data yang dapat diverifikasi.
+- Pertahankan harakat, tanda waqaf, dan tanda baca.
+- Gunakan font yang sesuai untuk teks Al-Qur'an.
+- Terapkan ukuran teks Arab yang dapat disesuaikan.
+- Atur tinggi baris dan jarak antarayat agar nyaman dibaca.
+- Hindari pemenggalan karakter Arab yang merusak susunan.
+- Jangan membuat ayat atau terjemahan menggunakan AI sebagai pengganti teks sumber yang valid.
+
+Sertakan basmalah pada posisi yang sesuai berdasarkan struktur surah dan sumber data. Perhatikan pengecualian pada Surah At-Taubah dan struktur khusus Surah An-Naml.
+
+5.3 Pengaturan bacaan
+
+Sediakan:
+
+- Pengaturan ukuran teks Arab.
+- Pengaturan ukuran terjemahan.
+- Pilihan jenis font yang kompatibel.
+- Mode terang.
+- Mode gelap jika dapat dibuat dengan tetap menjaga kenyamanan membaca.
+- Pengaturan jarak antarayat.
+- Pilihan untuk menampilkan atau menyembunyikan transliterasi.
+- Pilihan untuk menampilkan atau menyembunyikan terjemahan.
+- Pengaturan tampilan yang tersimpan.
+
+5.4 Tafsir ayat
+
+Jika tersedia dari API:
+
+- Tampilkan tafsir untuk ayat yang dipilih.
+- Tampilkan sumber atau nama kitab tafsir jika tersedia.
+- Bedakan tafsir dari terjemahan.
+- Berikan penanda loading dan error.
+- Jangan mengarang isi tafsir ketika data tidak tersedia.
+
+5.5 Audio murottal
+
+Implementasikan:
+
+- Pemutar audio per ayat jika didukung API.
+- Pemutar audio per surah.
+- Pilihan qari jika tersedia.
+- Play dan pause.
+- Lanjutkan audio.
+- Seek atau pengaturan posisi audio jika didukung.
+- Pengaturan kecepatan jika sumber dan pemutar mendukungnya.
+- Indikator ayat yang sedang diputar.
+- Penanganan error jika audio gagal dimuat.
+- Kontrol audio yang tetap mudah digunakan di layar kecil.
+
+Jangan menganggap audio tersedia apabila URL tidak valid. Validasi sumber audio sebelum digunakan.
+
+5.6 Auto-scroll
+
+Sediakan:
+
+- Tombol mulai auto-scroll.
+- Tombol jeda.
+- Tombol lanjutkan.
+- Pengaturan kecepatan.
+- Tombol berhenti.
+- Pengaturan yang mudah diakses saat membaca.
+
+Pastikan auto-scroll tidak mengganggu pembacaan, tidak bergerak terlalu cepat secara default, dan dapat dihentikan kapan saja.
+
+5.7 Bookmark, catatan, dan progres membaca
+
+Sediakan:
+
+- Bookmark ayat.
+- Daftar ayat favorit.
+- Catatan pribadi pada ayat.
+- Surah terakhir dibaca.
+- Ayat terakhir dibaca.
+- Riwayat bacaan.
+- Progres membaca.
+- Tombol lanjutkan bacaan terakhir.
+
+Simpan data lokal secara persisten. Gunakan struktur data yang konsisten berdasarkan nomor surah dan nomor ayat.
+
+Pastikan data tidak hilang hanya karena pengguna menutup atau memuat ulang aplikasi.
+
+Jika sinkronisasi cloud belum tersedia, jelaskan bahwa data hanya tersimpan di perangkat.
+
+5.8 Pencarian Al-Qur'an
+
+Implementasikan pencarian berdasarkan:
+
+- Nama surah.
+- Nomor surah.
+- Teks Arab jika indeks mendukungnya.
+- Terjemahan Bahasa Indonesia.
+- Nomor ayat.
+
+Hasil pencarian menampilkan nama surah, nomor ayat, teks Arab, dan terjemahan jika tersedia.
+
+Tambahkan:
+
+- Indikator pencarian.
+- Pesan ketika hasil tidak ditemukan.
+- Penanganan kesalahan.
+- Tombol untuk membuka ayat yang dipilih.
+
+Gunakan pencarian yang efisien dan jangan mengunduh seluruh data berulang kali pada setiap ketikan.
+
+---
+
+6. SUMBER API AL-QUR'AN
+
+Gunakan API Al-Qur'an yang terdokumentasi:
+
+"https://equran.id/api/v2"
+
+Dokumentasi:
+
+"https://equran.id/apidev/v2"
+
+Pelajari struktur endpoint sebelum mengimplementasikan integrasi.
+
+Gunakan API tersebut sebagai sumber utama untuk data yang memang disediakan, seperti:
+
+- Daftar surah.
+- Detail surah.
+- Ayat.
+- Terjemahan jika tersedia.
+- Audio jika tersedia.
+- Tafsir jika tersedia.
+
+Ketentuan:
+
+- Jangan mengasumsikan semua endpoint memiliki struktur respons yang sama.
+- Periksa dokumentasi dan contoh respons.
+- Validasi data sebelum digunakan.
+- Tangani kegagalan jaringan.
+- Hindari permintaan API yang tidak diperlukan.
+- Gunakan cache untuk data yang sesuai.
+- Tampilkan pesan yang jelas jika layanan tidak tersedia.
+- Jangan menampilkan teks contoh sebagai teks Al-Qur'an asli.
+- Jangan menyatakan sumber API menyediakan fitur tertentu sebelum diverifikasi.
+
+Jika diperlukan layanan tambahan, gunakan hanya API yang memiliki dokumentasi dan ketentuan penggunaan yang jelas.
+
+---
+
+7. FITUR JADWAL SALAT LENGKAP
+
+Buat halaman khusus Jadwal Salat dengan tampilan yang terintegrasi dengan desain Jay'z Quran.
+
+Tampilkan lima waktu salat wajib:
+
+1. Subuh (Fajr).
+2. Zuhur (Dhuhr).
+3. Asar (Asr).
+4. Magrib (Maghrib).
+5. Isya (Isha).
+
+Tampilkan juga:
+
+- Terbit matahari atau Syuruq.
+- Imsak selama Ramadan jika tersedia.
+- Waktu berbuka puasa yang mengikuti Magrib.
+- Hari dan tanggal Masehi.
+- Tanggal Hijriah.
+- Nama kota, kabupaten, dan provinsi.
+- Zona waktu.
+- Waktu pembaruan jadwal.
+
+Syuruq bukan waktu salat wajib keenam. Imsak merupakan informasi tambahan dan tidak menggantikan waktu Subuh.
+
+Gunakan format jam 24 jam, misalnya "04:32", "12:05", dan "18:01".
+
+Jangan menggunakan waktu contoh sebagai jadwal nyata.
+
+7.1 Lokasi pengguna
+
+Implementasikan pemilihan lokasi sebagai berikut:
+
+- Sediakan tombol Gunakan Lokasi Saya.
+- Minta izin lokasi secara jelas.
+- Jika izin diberikan, gunakan koordinat untuk menentukan lokasi.
+- Jika izin ditolak, sediakan pemilihan kota atau kabupaten secara manual.
+- Simpan lokasi pilihan pengguna.
+- Tampilkan nama lokasi yang aktif.
+- Sediakan tombol Pilih Kota.
+- Sediakan tombol Perbarui Jadwal.
+- Jangan meminta izin lokasi terus-menerus jika pengguna sudah membuat pilihan yang masih valid.
+
+Jangan mengasumsikan lokasi pengguna secara otomatis. Jika lokasi belum ditentukan, minta pengguna memilih lokasi atau memberikan izin lokasi.
+
+7.2 Sumber dan perhitungan jadwal salat
+
+Untuk pengguna Indonesia, prioritaskan sumber jadwal salat resmi atau layanan yang dapat diverifikasi, termasuk layanan Kementerian Agama RI jika tersedia dan dapat diakses melalui API yang sesuai.
+
+Jika sumber resmi tidak menyediakan endpoint publik yang sesuai, gunakan layanan perhitungan jadwal salat yang terdokumentasi dan mendukung koordinat serta zona waktu.
+
+Jangan mengklaim API resmi tersedia tanpa memverifikasinya.
+
+Tampilkan sumber jadwal dan metode perhitungan yang digunakan.
+
+Sediakan opsi:
+
+- Metode perhitungan yang sesuai dengan wilayah pengguna.
+- Pilihan standar Asar dan Hanafi jika didukung.
+- Penyesuaian menit untuk waktu tertentu jika layanan mendukungnya.
+
+Jangan mencampur hasil dari beberapa metode tanpa penjelasan.
+
+7.3 Kartu waktu salat berikutnya
+
+Buat kartu utama yang menampilkan:
+
+- Nama salat berikutnya.
+- Jam salat.
+- Hari dan tanggal.
+- Tanggal Hijriah jika tersedia.
+- Nama kota.
+- Zona waktu.
+- Hitung mundur menuju salat berikutnya.
+
+Contoh format:
+
+Menuju Magrib
+
+"01:24:35"
+
+Magrib — 17:45 WIB
+
+Selasa, 27 Oktober 2026
+
+Kota dan zona waktu mengikuti pilihan pengguna.
+
+Waktu dalam contoh ini hanya ilustrasi antarmuka, bukan data jadwal yang telah diverifikasi.
+
+Hitung mundur harus:
+
+- Diperbarui setiap detik.
+- Tidak memuat ulang seluruh halaman.
+- Mengikuti zona waktu lokasi yang dipilih.
+- Beralih ke salat berikutnya setelah waktu berjalan terlewati.
+- Beralih ke Subuh hari berikutnya setelah Isya hari ini terlewati.
+- Tetap benar setelah perangkat tidur atau aplikasi kembali dibuka.
+
+Gunakan perhitungan berbasis timestamp yang valid dan perbarui status ketika aplikasi kembali aktif.
+
+7.4 Daftar waktu salat harian
+
+Setiap baris atau kartu menampilkan:
+
+- Ikon sederhana.
+- Nama salat.
+- Jam salat.
+- Tanggal jadwal.
+- Zona waktu.
+- Status salat.
+
+Status dapat mencakup:
+
+- Berikutnya.
+- Akan datang.
+- Sudah lewat.
+
+Jika ingin menampilkan status Sedang berlangsung, gunakan aturan durasi yang didefinisikan dengan jelas dan jangan menganggap status tersebut sebagai penanda durasi ibadah yang pasti.
+
+Sorot waktu salat berikutnya dengan Emerald dan aksen Gold secara terbatas.
+
+7.5 Detail ketika waktu salat dipilih
+
+Ketika pengguna menekan salah satu waktu salat, tampilkan panel detail yang memuat:
+
+- Nama salat.
+- Hari dan tanggal Masehi.
+- Tanggal Hijriah.
+- Jam salat.
+- Zona waktu.
+- Kota dan provinsi.
+- Sumber data.
+- Metode perhitungan.
+- Status salat.
+- Pengaturan pengingat untuk salat tersebut.
+
+Pastikan tanggal dan jam yang ditampilkan merupakan data untuk tanggal yang benar.
+
+---
+
+8. TANGGAL DAN JAM REAL-TIME
+
+Fitur tanggal dan waktu merupakan bagian penting dari aplikasi.
+
+8.1 Jam digital utama
+
+Pada beranda dan halaman Jadwal Salat, tampilkan:
+
+- Jam digital real-time dalam format 24 jam.
+- Detik jika diperlukan, misalnya "14:35:42".
+- Hari dan tanggal Masehi.
+- Tanggal Hijriah.
+- Nama kota.
+- Zona waktu.
+
+Jam diperbarui setiap detik tanpa memuat ulang seluruh halaman.
+
+Tanggal berubah otomatis berdasarkan zona waktu yang sedang digunakan.
+
+8.2 Tanggal pada setiap waktu salat
+
+Setiap waktu salat wajib memiliki tanggal yang jelas, bukan hanya jam.
+
+Format tampilan yang diharapkan:
+
+Subuh
+
+- Hari/Tanggal: Selasa, 27 Oktober 2026.
+- Hijriah: berdasarkan sumber kalender.
+- Waktu: 04:15 WIB.
+- Status: sesuai waktu saat ini.
+
+Magrib
+
+- Hari/Tanggal: Selasa, 27 Oktober 2026.
+- Hijriah: berdasarkan sumber kalender.
+- Waktu: 17:45 WIB.
+- Status: sesuai waktu saat ini.
+
+Seluruh jam pada contoh tersebut hanya ilustrasi desain. Aplikasi harus mengambil jadwal sesuai lokasi dan tanggal sebenarnya.
+
+8.3 Kalender Masehi dan Hijriah
+
+Tampilkan:
+
+- Hari dalam Bahasa Indonesia.
+- Tanggal Masehi.
+- Bulan Masehi.
+- Tahun Masehi.
+- Tanggal Hijriah.
+- Nama bulan Hijriah.
+- Tahun Hijriah.
+
+Gunakan sumber kalender Hijriah yang dapat diverifikasi.
+
+Jika kalender Hijriah dari sumber API berbeda dari kalender lokal yang digunakan pengguna, jelaskan sumber yang dipakai dan sediakan penyesuaian jika didukung.
+
+Jangan membuat tanggal Hijriah palsu hanya dengan mengganti tanggal Masehi.
+
+8.4 Zona waktu
+
+Gunakan zona waktu IANA sesuai lokasi, misalnya:
+
+- "Asia/Jakarta" untuk WIB.
+- "Asia/Makassar" untuk WITA.
+- "Asia/Jayapura" untuk WIT.
+
+Zona waktu harus mengikuti lokasi salat yang dipilih, bukan selalu zona waktu perangkat.
+
+Pastikan konversi UTC, tanggal, jam, dan hitung mundur tidak menyebabkan tanggal bergeser secara tidak benar.
+
+Jika lokasi pengguna berada di luar Indonesia, gunakan zona waktu yang sesuai dengan lokasi tersebut.
+
+---
+
+9. KALENDER JADWAL SALAT
+
+Buat kalender yang memungkinkan pengguna melihat jadwal harian dan bulanan.
+
+Fitur:
+
+- Pilih tanggal.
+- Pilih bulan.
+- Tombol kembali ke hari ini.
+- Navigasi bulan sebelumnya dan berikutnya.
+- Daftar jadwal salat untuk setiap hari yang dipilih.
+- Tanggal Masehi dan Hijriah.
+- Jam Subuh, Zuhur, Asar, Magrib, dan Isya.
+- Waktu Syuruq jika tersedia.
+- Informasi Imsak dan berbuka selama Ramadan jika tersedia.
+- Cetak atau ekspor PDF jika dapat diimplementasikan dengan benar.
+
+Aturan:
+
+- Data harus mengikuti lokasi yang dipilih.
+- Jadwal harus mengikuti tanggal yang dipilih.
+- Jangan menggunakan satu jadwal yang sama untuk seluruh tanggal dalam sebulan.
+- Ambil data dari sumber valid atau hitung menggunakan metode yang jelas.
+- Tampilkan indikator loading dan error.
+- Bedakan data yang telah diverifikasi dengan data cache.
+- Jangan menyatakan data kalender sudah lengkap jika sebagian tanggal gagal dimuat.
+
+---
+
+10. PENGINGAT ADZAN DAN NOTIFIKASI
+
+Bangun fitur pengingat untuk lima waktu salat wajib.
+
+10.1 Pengaturan pengingat
+
+Pengguna dapat:
+
+- Mengaktifkan atau menonaktifkan pengingat setiap salat.
+- Mengatur pengingat tepat pada waktu salat.
+- Memilih pengingat beberapa menit sebelumnya jika didukung.
+- Memilih suara notifikasi yang tersedia.
+- Mengaktifkan atau menonaktifkan mode senyap.
+- Mengatur volume melalui kontrol perangkat atau pemutar jika didukung.
+- Menguji notifikasi.
+- Menyimpan preferensi.
+
+10.2 Audio adzan
+
+Jika menyediakan audio adzan:
+
+- Gunakan audio dengan lisensi yang sesuai atau audio yang diizinkan untuk digunakan.
+- Jangan menggunakan rekaman berhak cipta tanpa izin yang sesuai.
+- Berikan kontrol suara yang jelas.
+- Jangan memutar audio secara otomatis tanpa izin atau tindakan pengguna yang sesuai dengan aturan platform.
+- Berikan opsi notifikasi tanpa suara.
+
+10.3 Batasan notifikasi PWA
+
+Gunakan Web Notifications API dan service worker apabila didukung.
+
+Namun, jangan menjanjikan bahwa PWA dapat menjalankan timer JavaScript atau membunyikan adzan tepat waktu saat browser tertutup, perangkat tidur, atau sistem membatasi aplikasi.
+
+Jika pengingat yang andal ketika aplikasi ditutup dibutuhkan:
+
+- Siapkan arsitektur yang mendukung push notification melalui server jika diperlukan.
+- Pertimbangkan aplikasi Android native atau Capacitor.
+- Implementasikan penjadwalan notifikasi lokal jika didukung platform.
+- Perhatikan batas jumlah alarm, izin notifikasi, batasan baterai, dan kebijakan Android.
+- Uji perilaku pada perangkat Android nyata.
+
+Jika suatu fitur hanya berfungsi ketika aplikasi terbuka, jelaskan keterbatasannya kepada pengguna.
+
+Jangan menampilkan status “Pengingat aktif” jika izin belum diberikan atau penjadwalan gagal.
+
+---
+
+11. PENGATURAN APLIKASI
+
+Buat halaman Pengaturan yang mencakup:
+
+Pengaturan bacaan
+
+- Ukuran teks Arab.
+- Ukuran terjemahan.
+- Font.
+- Transliterasi.
+- Tampilan terjemahan.
+- Mode terang dan gelap.
+- Auto-scroll.
+
+Pengaturan lokasi dan waktu
+
+- Lokasi aktif.
+- Pemilihan kota.
+- Zona waktu.
+- Metode perhitungan salat.
+- Mazhab perhitungan Asar jika didukung.
+- Penyesuaian menit jika didukung.
+- Sumber data.
+- Kalender Hijriah.
+
+Pengaturan notifikasi
+
+- Pengingat setiap salat.
+- Pilihan waktu pengingat.
+- Suara notifikasi.
+- Mode senyap.
+- Status izin notifikasi.
+- Tombol uji notifikasi.
+
+Pengaturan data
+
+- Hapus riwayat bacaan.
+- Hapus cache aplikasi jika sesuai.
+- Ekspor data lokal jika memungkinkan.
+- Konfirmasi sebelum menghapus bookmark, catatan, atau preferensi.
+
+Jangan menghapus data penting tanpa persetujuan pengguna.
+
+---
+
+12. NAVIGASI APLIKASI
+
+Gunakan navigasi bawah yang ramah perangkat seluler:
+
+1. Beranda
+2. Al-Qur'an
+3. Jadwal Salat
+4. Bookmark
+5. Pengaturan
+
+Pastikan:
+
+- Semua item navigasi berfungsi.
+- Halaman aktif terlihat jelas.
+- Navigasi tidak menutupi konten.
+- Area sentuh cukup besar.
+- Navigasi dapat digunakan dengan keyboard pada desktop.
+- Perpindahan halaman tidak menghapus progres membaca.
+- Deep link dapat digunakan jika didukung.
+
+Pada layar besar, navigasi dapat berubah menjadi sidebar atau layout desktop yang sesuai.
+
+---
+
+13. PENYIMPANAN DATA DAN PERFORMA
+
+Gunakan penyimpanan lokal untuk:
+
+- Bookmark.
+- Catatan ayat.
+- Riwayat bacaan.
+- Posisi bacaan terakhir.
+- Preferensi tampilan.
+- Lokasi pilihan.
+- Pengaturan pengingat.
+- Cache data yang sesuai.
+
+Pilih "localStorage" untuk preferensi sederhana dan IndexedDB untuk data yang lebih besar jika dibutuhkan.
+
+Aturan:
+
+- Validasi data sebelum digunakan.
+- Tangani data yang rusak.
+- Berikan fallback yang aman.
+- Hindari permintaan API berulang.
+- Jangan menyimpan informasi sensitif tanpa kebutuhan.
+- Jangan meminta lokasi tanpa alasan yang jelas.
+- Jangan mengirim data pribadi ke server tanpa persetujuan.
+- Jangan menyatakan data telah disinkronkan jika belum ada backend sinkronisasi.
+
+Optimalkan pemuatan awal aplikasi dan gunakan lazy loading pada halaman atau data yang sesuai.
+
+---
+
+14. PWA DAN KEMAMPUAN OFFLINE
+
+Buat Jay'z Quran menjadi Progressive Web App yang dapat diinstal jika lingkungan mendukungnya.
+
+Implementasikan:
+
+- "manifest.webmanifest".
+- Nama aplikasi dan nama pendek.
+- Ikon aplikasi dalam ukuran yang dibutuhkan.
+- Theme color dan background color.
+- Service worker.
+- Cache aset statis.
+- Offline fallback.
+- Metadata aplikasi.
+- Konfigurasi start URL dan display mode.
+- Strategi cache API yang sesuai.
+- Instruksi instalasi pada Android dan desktop.
+
+Ketentuan offline:
+
+- Tampilkan data Al-Qur'an yang telah disimpan sebelumnya jika tersedia.
+- Tampilkan jadwal salat terakhir yang valid beserta tanggal dan label cache.
+- Jangan menyatakan jadwal cache sebagai jadwal terbaru.
+- Jangan menampilkan data palsu jika data belum pernah diunduh.
+- Berikan pesan yang jelas jika koneksi tidak tersedia.
+- Pastikan cache diperbarui saat jaringan kembali tersedia.
+
+Jangan melakukan cache tanpa batas. Gunakan strategi yang mencegah data lama dianggap selalu benar.
+
+---
+
+15. MEMBANGUN APLIKASI ANDROID YANG DAPAT DIUNDUH
+
+Siapkan proyek agar dapat dikembangkan menjadi aplikasi Android yang benar-benar dapat diinstal.
+
+Target hasil
+
+1. Source code lengkap.
+2. Build produksi web.
+3. PWA yang dapat diinstal.
+4. Proyek Android menggunakan Capacitor atau pendekatan yang sesuai jika diperlukan.
+5. APK Android yang dapat diinstal, apabila build toolchain tersedia.
+6. Android App Bundle (AAB) untuk distribusi melalui Google Play, apabila dapat dibangun.
+7. Dokumentasi proses build.
+8. Panduan instalasi.
+9. Laporan pengujian.
+
+Ketentuan build
+
+- Periksa apakah lingkungan menyediakan toolchain yang dibutuhkan.
+- Siapkan konfigurasi aplikasi, nama paket, ikon, dan metadata.
+- Pastikan API, asset, dan konfigurasi produksi valid.
+- Jalankan build produksi.
+- Jalankan pemeriksaan TypeScript, lint, dan tes yang tersedia.
+- Uji navigasi dan fitur utama.
+- Uji instalasi PWA.
+- Jika menggunakan Capacitor, sertakan konfigurasi Android yang dibutuhkan.
+- Jangan menaruh rahasia atau API key privat di kode frontend.
+- Jelaskan proses penandatanganan APK/AAB jika diperlukan.
+
+Jangan mengklaim file APK atau AAB tersedia sebelum file benar-benar berhasil dibuat. Jika lingkungan Google AI Studio hanya mendukung proyek web, berikan source code dan instruksi yang jelas untuk membangun APK menggunakan Android Studio atau toolchain yang sesuai.
+
+Jangan membuat tombol download yang mengarah ke file yang tidak ada.
+
+---
+
+16. RESPONSIVE DESIGN DAN AKSESIBILITAS
+
+Aplikasi harus berfungsi pada:
+
+- Android.
+- iOS.
+- Tablet.
+- Desktop.
+- Browser modern.
+- Layar dengan lebar minimal 320 px.
+- Mode portrait dan landscape.
+
+Persyaratan:
+
+- Gunakan CSS responsif.
+- Hindari horizontal overflow.
+- Pastikan teks Arab tidak terpotong.
+- Pastikan kartu jadwal salat tidak bertumpuk.
+- Gunakan kontras warna yang baik.
+- Gunakan ukuran sentuh yang memadai.
+- Dukung keyboard dan focus state.
+- Tambahkan label aksesibilitas pada tombol ikon.
+- Gunakan loading state yang jelas.
+- Jangan membuat animasi yang mengganggu.
+- Hormati pengaturan reduced motion.
+
+Uji tampilan di layar kecil, bukan hanya desktop.
+
+---
+
+17. KEAMANAN, VALIDASI, DAN PENANGANAN ERROR
+
+Implementasikan:
+
+- Validasi respons API.
+- Error boundary pada antarmuka.
+- Penanganan timeout.
+- Penanganan jaringan terputus.
+- Penanganan respons API yang tidak valid.
+- Retry yang terkontrol.
+- Pesan error yang mudah dimengerti.
+- Tombol coba lagi.
+- Validasi data sebelum disimpan.
+- Penanganan izin lokasi dan notifikasi.
+- Penanganan tanggal atau lokasi yang tidak valid.
+
+Jangan:
+
+- Menampilkan stack trace kepada pengguna.
+- Mengarang hasil API.
+- Menganggap data kosong sebagai data valid.
+- Menyimpan jadwal palsu sebagai cache.
+- Mengungkap API key privat.
+- Mengklaim keberhasilan ketika proses gagal.
+
+Gunakan log pengembangan untuk membantu debugging tanpa mengekspos data pribadi pengguna.
+
+---
+
+18. PENGUJIAN WAJIB
+
+Sebelum menyatakan aplikasi selesai, lakukan pengujian yang dapat dijalankan dalam lingkungan yang tersedia.
+
+A. Pengujian Al-Qur'an
+
+- Daftar 114 surah.
+- Pembukaan detail surah.
+- Validasi teks Arab dan harakat.
+- Terjemahan.
+- Transliterasi jika tersedia.
+- Tafsir jika tersedia.
+- Pemutar audio.
+- Pencarian surah dan ayat.
+- Bookmark.
+- Catatan.
+- Riwayat bacaan.
+- Posisi bacaan terakhir.
+- Auto-scroll.
+- Penyimpanan data setelah halaman dimuat ulang.
+
+B. Pengujian jadwal salat
+
+- Penentuan lokasi.
+- Pemilihan kota manual.
+- Pengambilan jadwal tanggal saat ini.
+- Pengambilan jadwal tanggal lain.
+- Validasi lima waktu salat.
+- Validasi waktu Syuruq.
+- Imsak dan berbuka jika tersedia.
+- Zona waktu WIB, WITA, dan WIT.
+- Pergantian hari.
+- Peralihan dari Isya ke Subuh hari berikutnya.
+- Hitung mundur.
+- Tanggal Masehi.
+- Tanggal Hijriah.
+- Kalender bulanan.
+- Kegagalan API.
+- Data cache.
+- Pemulihan jaringan.
+
+C. Pengujian notifikasi
+
+- Izin diberikan.
+- Izin ditolak.
+- Pengingat setiap salat.
+- Uji notifikasi.
+- Pengaturan suara.
+- Mode senyap.
+- Batasan ketika aplikasi ditutup.
+- Perilaku notifikasi pada perangkat Android yang didukung.
+
+D. Pengujian aplikasi
+
+- Navigasi.
+- Responsivitas.
+- Instalasi PWA.
+- Offline fallback.
+- Penyimpanan lokal.
+- Build produksi.
+- Error console.
+- Tautan dan tombol.
+- Performa pemuatan.
+
+Laporkan setiap pengujian dengan status:
+
+- Berhasil
+- Gagal
+- Belum Diuji
+
+Jangan menandai pengujian sebagai berhasil hanya karena kode sudah ditulis.
+
+---
+
+19. URUTAN PENGERJAAN
+
+Kerjakan proyek secara sistematis:
+
+1. Periksa struktur proyek dan teknologi yang digunakan.
+2. Buat konfigurasi aplikasi dan design tokens.
+3. Bangun layout utama dan sistem navigasi.
+4. Implementasikan API Al-Qur'an.
+5. Implementasikan daftar surah dan pembaca ayat.
+6. Implementasikan audio, pencarian, bookmark, catatan, dan progres.
+7. Implementasikan layanan jadwal salat.
+8. Implementasikan lokasi dan zona waktu.
+9. Implementasikan jam real-time, tanggal Masehi, dan Hijriah.
+10. Implementasikan kalender jadwal salat.
+11. Implementasikan pengingat adzan dan pengaturan notifikasi.
+12. Implementasikan penyimpanan lokal dan cache.
+13. Implementasikan PWA.
+14. Siapkan opsi build Android jika lingkungan mendukung.
+15. Uji seluruh fitur utama.
+16. Perbaiki error yang ditemukan.
+17. Jalankan build produksi.
+18. Buat dokumentasi dan laporan hasil.
+
+Prioritaskan fungsi inti terlebih dahulu. Jangan berhenti setelah menghasilkan halaman beranda.
+
+Jika ada fitur yang bergantung pada API, izin, backend, atau toolchain yang belum tersedia, implementasikan bagian yang dapat dikerjakan, jelaskan ketergantungannya, dan jangan berpura-pura bahwa fitur tersebut sudah berfungsi penuh.
+
+---
+
+20. KRITERIA HASIL AKHIR
+
+Jay'z Quran dinyatakan siap pada tahap yang telah diverifikasi apabila:
+
+- Seluruh halaman utama dapat dibuka.
+- Daftar 114 surah berasal dari sumber yang valid.
+- Pembaca Al-Qur'an menampilkan teks Arab dengan benar.
+- Terjemahan dan audio berfungsi jika tersedia.
+- Bookmark, catatan, dan progres tersimpan.
+- Jadwal salat mengikuti lokasi dan tanggal yang benar.
+- Jam digital diperbarui secara real-time.
+- Setiap jadwal menampilkan tanggal dan zona waktu.
+- Tanggal Hijriah berasal dari sumber yang jelas.
+- Hitung mundur berpindah ke salat berikutnya dengan benar.
+- Kalender harian dan bulanan menggunakan data sesuai tanggal.
+- Pengingat adzan memiliki status dan izin yang jelas.
+- PWA dapat diinstal jika didukung.
+- Build produksi berhasil jika toolchain tersedia.
+- APK/AAB hanya disediakan jika benar-benar berhasil dibangun.
+- Error dan keterbatasan yang masih ada didokumentasikan.
+
+FORMAT LAPORAN AKHIR
+
+Setelah implementasi, berikan laporan singkat yang berisi:
+
+1. Fitur yang berhasil dibuat.
+2. Fitur yang belum selesai.
+3. API dan sumber data yang digunakan.
+4. Sumber serta metode perhitungan jadwal salat.
+5. Status jam real-time dan kalender Hijriah.
+6. Status pengingat adzan dan keterbatasannya.
+7. Status build produksi.
+8. Status PWA.
+9. Status APK/AAB.
+10. Hasil pengujian.
+11. Langkah menjalankan proyek.
+12. Langkah membangun dan menginstal aplikasi.
+
+Jika ada file yang berhasil dibuat, berikan tautan atau lokasi file yang benar-benar tersedia. Jangan memberikan tautan unduhan fiktif.
+
+---
+
+INSTRUKSI PENUTUP
+
+Sekarang implementasikan Jay'z Quran sebagai satu aplikasi terpadu berdasarkan seluruh spesifikasi di atas.
+
+Pertahankan identitas Emerald–Gold–Ivory, utamakan kenyamanan membaca Al-Qur'an, pastikan jadwal salat memiliki tanggal dan waktu yang benar, dan buat antarmuka yang profesional pada perangkat seluler maupun desktop.
+
+Jangan hanya memberikan rencana, contoh kode, atau mockup. Kerjakan langsung pada proyek yang tersedia, integrasikan fitur secara nyata, periksa error, jalankan pengujian yang memungkinkan, dan laporkan hasil dengan jujur.

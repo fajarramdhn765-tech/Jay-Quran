@@ -1,0 +1,6 @@
+{
+  "name": "Jay'z Quran",
+  "description": "Aplikasi Al-Qur'an Digital lengkap dengan terjemahan Kemenag RI, audio murottal, jadwal salat akurat Indonesia, pengingat adzan, dan kalender Hijriah.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
